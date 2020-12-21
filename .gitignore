@@ -1,0 +1,9 @@
+# Don't track content of these folders
+.idea/
+
+# Don't track content of these files
+*.log
+*.log.lck
+*.log.*
+
+# Compiled source

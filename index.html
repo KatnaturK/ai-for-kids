@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Krutantak Patil">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+
+    <!-- Import TensorFlow.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- Load the coco-ssd model to use to recognize things in images -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Custom script for this template -->
+    <script type="text/javascript" src="script.js"></script>
+
+    <title>AI For Kids</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-dark fixed-top bg-dark">
+            <div id="logo">
+                <h1>AI For Kids</h1>
+            </div>
+
+            <div class="form-inline mt-2 mt-md-0 btn-div">
+                <input class="form-control mr-sm-2" type="file" hidden id="input-img" accept="image/*"
+                    onchange="uploadImageChange(event);">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="uploadImageClick()">Upload
+                    Image</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="predictImageClick()">Predict
+                    Image</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="modelSummaryClick()">Model
+                    Summary</button>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        <div id="loader-popup">
+            <div id="loader"></div>
+        </div>
+
+        <div id="cnn-popup">
+            <span class="helper"></span>
+            <div>
+                <div id="cnn-popup-close">&times;</div>
+
+                <p>Can you tell which layer your image belongs to ? The diagram shows the outputs from the initial
+                    layers,
+                    middle layers, and the last layers. The early layers try to capture the edges and backgrounds, the
+                    middle layers capture the prominent features and the deeper layers try to learn the overall
+                    structure in
+                    the image. As you can see the deeper layers are not visually very coherent but the neural networks
+                    learns a lot from these images.</p>
+
+                <div class="cnn-module">
+                    <div class="cnn-img-view">
+                        <div id="cnn-popup-box-1-1" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-1-2" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-1-3" class="cnn-popup-box"></div>
+                        <div class="prediction-text bg-dark">
+                            <h6 id="cnn-img-txt-1"></h6>
+                        </div>
+                    </div>
+
+                    <div class="cnn-img-view">
+                        <div id="cnn-popup-box-2-1" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-2-2" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-2-3" class="cnn-popup-box"></div>
+                        <div class="prediction-text bg-dark">
+                            <h6 id="cnn-img-txt-2"></h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cnn-module">
+                    <div class="cnn-img-view">
+                        <div id="cnn-popup-box-3-1" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-3-2" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-3-3" class="cnn-popup-box"></div>
+                        <div class="prediction-text bg-dark">
+                            <h6 id="cnn-img-txt-3"></h6>
+                        </div>
+                    </div>
+
+                    <div class="cnn-img-view">
+                        <div id="cnn-popup-box-4-1" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-4-2" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-4-3" class="cnn-popup-box"></div>
+                        <div class="prediction-text bg-dark">
+                            <h6 id="cnn-img-txt-4"></h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cnn-module">
+                    <div class="cnn-img-view">
+                        <div id="cnn-popup-box-5-1" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-5-2" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-5-3" class="cnn-popup-box"></div>
+                        <div class="prediction-text bg-dark">
+                            <h6 id="cnn-img-txt-5"></h6>
+                        </div>
+                    </div>
+
+                    <div class="cnn-img-view">
+                        <div id="cnn-popup-box-6-1" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-6-2" class="cnn-popup-box"></div>
+                        <div id="cnn-popup-box-6-3" class="cnn-popup-box"></div>
+                        <div class="prediction-text bg-dark">
+                            <h6 id="cnn-img-txt-6"></h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="prediction">
+            <div id="prediction-in" class="prediction-img-polaroid">
+                <img [src]="" id="prediction-in-img" class="prediction-img" />
+                <div class="prediction-text bg-dark">
+                    <h4>Uploaded image</h4>
+                </div>
+            </div>
+            <div id="prediction-out" class="prediction-img-polaroid">
+                <div style="position: relative;">
+                    <img [src]="" id="prediction-out-img" class="prediction-img" />
+                    <canvas id="prediction-out-canvas"></canvas>
+                </div>
+                <div class="prediction-text bg-dark">
+                    <h4>Processed image</h4>
+                </div>
+            </div>
+            <div id="prediction-stats" class="prediction-img-polaroid">
+                <div id="prediction-stats-table">
+
+                </div>
+                <div class="prediction-text bg-dark">
+                    <h4>Object Prediction</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="info">
+            <div id="cnn-info-1" class="info-polaroid">
+                <div class="prediction-text bg-dark">
+                    <h4>Convolution</h4>
+                </div>
+                <p>Convolutions are used to extract features from the image. We can see that the earlier layers try to
+                    capture the edges and backgrounds, the middle layers capture the prominent features and the deeper
+                    layers try to
+                    learn the overall structure in the image. This is the reason that the output of the deeper layers
+                    are not very coherent visually.
+                    <br /><br />
+                    The image shown has size 5X5, which is convolved with a 3X3 Kernel to generate the feature maps. The
+                    convolution operation is performed by sliding the kernel across the image. In the animation shown
+                    below, blue area represents the receptive field that are the pixels that undergo convolution. At
+                    every location, we perform element-wise matrix multiplication and rum the result to get the
+                    corresponding value in the feature map.
+                </p>
+                <img src="assets/convolution.png" />
+                <img src="assets/ConvolutionGif.gif" />
+            </div>
+
+            <div id="cnn-info-2" class="info-polaroid">
+                <div class="prediction-text bg-dark">
+                    <h4>Activation</h4>
+                </div>
+                <p>The data represented in the real world is mainly non-linear. Consider the graph given in figure --
+                    representing the blood pressures of individuals who smoke and the ones who don’t. A linear graph
+                    will only be able to give a line 3D space but will not be able to learn the patter on what makes the
+                    person a smoker or a non-smoker. This is because the pattern that defines this classification is
+                    nonlinear. To learn on this data we need to induce non-linearity into the system. Since convolution
+                    is a linear function, we need to pass the feature maps generated through a nonlinear function. These
+                    functions are called activation functions. </p>
+                <img src="assets/activation.png" />
+                <img src="assets/activation_nonlinear.jpg" />
+            </div>
+        </div>
+
+        <div id="cnn">
+
+            <div id="cnn-info-3">
+                <p>Further, when you click on the “Convolutional Neural Network for uploaded image” button, you will
+                    notice that few neurons are grey. This is because these are dead neurons. Dead neurons generally
+                    occur when
+                    the network is very deep i.e. has a lot of layers. However, few dead neurons do not affect the
+                    learning
+                    of the complete neural network. </p>
+                <div class="bg-dark">
+                    <button id="cnn-title" class="btn btn-outline-success" onclick="cnnFlowClick()">
+                        <h4>Convolutional Neural Network Flow for uploaded Image</h4>
+                    </button>
+                </div>
+            </div>
+
+            <div id="cnn-flow"></div>
+        </div>
+
+        <div id="plotly_div"></div>
+
+        <div id="model-summary">
+            <img src="assets/model summary.JPG" height="auto" width="auto" />
+        </div>
+
+    </main>
+
+</body>
+
+</html>

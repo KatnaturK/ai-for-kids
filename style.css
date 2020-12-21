@@ -1,0 +1,400 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    padding-top      : 3rem;
+    padding-bottom   : 3rem;
+    /* color         : #fff; */
+    overflow-x       : visible;
+    overflow-y       : visible;
+}
+
+#logo h1 {
+    color: #fff;
+}
+
+#loader-popup {
+    background: rgba(0, 0, 0, .4);
+    cursor    : pointer;
+    display   : none;
+    height    : 100%;
+    position  : fixed;
+    text-align: center;
+    top       : 0;
+    width     : 100%;
+    z-index   : 10000;
+}
+
+#loader {
+    position            : fixed;
+    top                 : 50%;
+    left                : 50%;
+    border              : 16px solid lightgray;
+    border-radius       : 50%;
+    border-top          : 16px solid gray;
+    /* border-bottom    : 16px solid gray; */
+    width               : 100px;
+    height              : 100px;
+    -webkit-animation   : spin 2s linear infinite;
+    /* Safari */
+    animation           : spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.btn-div {
+    width    : 35%;
+    /* border: 4px solid #fff; */
+}
+
+.btn {
+    margin-left: 2%;
+    display    : inline-block;
+}
+
+#prediction {
+    background-color: white;
+    margin-top      : 2rem;
+    width           : 100%;
+    height          : 100%;
+    visibility      : hidden;
+}
+
+.prediction-img-polaroid {
+    display         : inline-block;
+    width           : 31%;
+    background-color: white;
+    box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
+    margin          : 1%;
+    padding         : 0;
+}
+
+.prediction-text {
+    text-align    : center;
+    vertical-align: middle;
+    padding       : 2%;
+}
+
+.prediction-text h4,
+.prediction-text h6 {
+    font-family   : "Trebuchet MS", Verdana, sans-serif;
+    text-align    : center;
+    color         : #fff;
+    text-shadow   : 2px 2px 2px #fff;
+    text-transform: uppercase;
+    line-height   : 150%;
+    letter-spacing: 10px;
+}
+
+.prediction-img {
+    background-color: white;
+    display         : block;
+    width           : 100%;
+    height          : 100%;
+    margin          : 0;
+    padding         : 0;
+}
+
+#prediction-out-canvas {
+    background-color: transparent;
+    display         : block;
+    width           : 100%;
+    height          : 100%;
+    margin          : 0;
+    padding         : 0;
+    position        : absolute;
+    left            : 0;
+    top             : 0;
+    z-index         : 1;
+}
+
+#prediction-stats-table {
+    background-color: white;
+    color           : green;
+    display         : block;
+    width           : 100%;
+    font-family     : "Trebuchet MS", Verdana, sans-serif;
+    text-align      : center;
+    text-transform  : uppercase;
+    padding         : 5%;
+    top             : 1%;
+}
+
+#prediction-stats-table>table {
+    top    : 1%;
+    padding: 5%;
+}
+
+#cnn-title {
+    box-shadow    : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family   : "Trebuchet MS", Verdana, sans-serif;
+    text-align    : center;
+    text-transform: uppercase;
+    color         : #fff;
+    text-shadow   : 2px 2px 2px #fff;
+    display       : block;
+    width         : 100%;
+    margin        : 0;
+    padding       : 1%;
+    line-height   : 150%;
+    letter-spacing: 10px;
+}
+
+#cnn {
+    /* margin-top : 2rem; */
+    /* white-space     : nowrap; */
+    margin    : 1%;
+    visibility: hidden;
+}
+
+#cnn-flow {
+    background-color: white;
+    box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    visibility      : hidden;
+}
+
+.vertical-box {
+    width             : auto;
+    height            : auto;
+    padding           : 0px;
+    margin            : 0px;
+    -o-box-sizing     : border-box;
+    -moz-box-sizing   : border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing    : border-box;
+    box-sizing        : border-box;
+    display           : inline-block;
+    vertical-align    : middle;
+    visibility        : hidden;
+}
+
+.box {
+    width             : 50px;
+    height            : 50px;
+    padding           : 0px;
+    margin            : 0px;
+    -o-box-sizing     : border-box;
+    -moz-box-sizing   : border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing    : border-box;
+    box-sizing        : border-box;
+    border            : 4px solid #fff;
+    background-color  : #ddd;
+    visibility        : hidden;
+}
+
+.box:hover {
+    cursor : pointer !important;
+    opacity: .5;
+}
+
+.img-tensor-1 {
+    width : 100%;
+    height: 100%;
+}
+
+#cnn-popup {
+    background: rgba(0, 0, 0, .4);
+    cursor    : pointer;
+    display   : none;
+    height    : 100%;
+    position  : fixed;
+    text-align: center;
+    top       : 0;
+    width     : 100%;
+    z-index   : 10000;
+}
+
+#cnn-popup {
+    background: rgba(0, 0, 0, .4);
+    display   : none;
+    height    : 100%;
+    position  : fixed;
+    text-align: center;
+    top       : 0;
+    width     : 100%;
+    z-index   : 10000;
+    margin    : 0;
+    padding   : 0;
+}
+
+#cnn-popup .helper {
+    display       : inline-block;
+    height        : 100%;
+    vertical-align: middle;
+}
+
+#cnn-popup>div {
+    background-color: #fff;
+    opacity         : 1;
+    box-shadow      : 10px 10px 60px #555;
+    display         : inline-block;
+    width           : 95%;
+    height          : auto;
+    vertical-align  : middle;
+    position        : relative;
+    padding         : 5% 5%;
+}
+
+#cnn-popup-close {
+    background-color: #fff;
+    border          : 3px solid #999;
+    border-radius   : 50%;
+    cursor          : pointer;
+    display         : inline-block;
+    font-family     : arial;
+    font-weight     : bold;
+    position        : absolute;
+    top             : -2%;
+    right           : -1%;
+    font-size       : 25px;
+    line-height     : 100%;
+    width           : 30px;
+    height          : 30px;
+    text-align      : center;
+}
+
+#cnn-popup-close:hover {
+    background-color: #ccc;
+}
+
+.cnn-popup-box {
+    width             : 100px;
+    height            : 100px;
+    padding           : 0;
+    margin            : 5%;
+    -o-box-sizing     : border-box;
+    -moz-box-sizing   : border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing    : border-box;
+    box-sizing        : border-box;
+}
+
+.cnn-popup-img {
+    margin : 5%;
+    padding: 0;
+}
+
+.cnn-img-view {
+    display    : inline-block;
+    position   : relative;
+    margin-left: 2%;
+    width      : auto;
+    height     : auto;
+    padding    : 0;
+}
+
+.vertical-box-label {
+    font-family   : "Trebuchet MS", Verdana, sans-serif;
+    text-align    : center;
+    text-transform: uppercase;
+    color         : #000;
+    margin-left   : 2%;
+    margin-bottom : 0;
+    padding       : 0;
+    font-size     : x-small;
+}
+
+.cnn-module {
+    display       : inline;
+    margin-left   : 5%;
+    padding       : 0;
+    /* border     : 2px dotted #444; */
+}
+
+#model-summary {
+    background: rgba(0, 0, 0, .4);
+    cursor    : pointer;
+    display   : none;
+    height    : 100%;
+    position  : fixed;
+    text-align: center;
+    top       : 0;
+    width     : 100%;
+    z-index   : 10000;
+}
+
+#model-summary>img {
+    position: relative;
+    top     : 25%;
+}
+
+#info {
+    /* position  : relative;
+    top       : 0; */
+    visibility: hidden;
+}
+
+.info-polaroid {
+    display         : inline-block;
+    width           : 47.5%;
+    background-color: white;
+    box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
+    margin          : 1%;
+    padding         : 0;
+}
+
+.info-polaroid>p {
+    font-family : "Trebuchet MS", Verdana, sans-serif;
+    text-align  : justify;
+    margin-top  : 5%;
+    margin-left : 5%;
+    margin-right: 5%;
+}
+
+.info-polaroid>img {
+    margin-left  : 5%;
+    margin-bottom: 5%;
+}
+
+#cnn-info-1 {
+    position: relative;
+    top     : 0;
+}
+
+#cnn-info-2 {
+    position: relative;
+    top     : -10%;
+}
+
+#cnn-info-3 {
+    background-color: white;
+    box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
+    margin          : 1%;
+    padding         : 0;
+}
+
+#cnn-info-3>p {
+    font-family  : "Trebuchet MS", Verdana, sans-serif;
+    text-align   : justify;
+    padding-top  : 2%;
+    padding-left : 2%;
+    padding-right: 2%;
+}
+
+#cnn-popup>div>p {
+    font-family  : "Trebuchet MS", Verdana, sans-serif;
+    text-align   : justify;
+    padding-left : 2%;
+    padding-right: 2%;
+}
