@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Krutantak Patil">
+    <meta name="author" content="Disha Nayar">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -178,15 +179,27 @@
         </div>
 
         <div id="info">
+            <div id="cnn-info-4" class="info-polaroid" style="width: 100%;">
+                <div class="prediction-text bg-dark">
+                    <h4>Convolutional Neural Network for Object Detection</h4>
+                </div>
+                <p style="margin-top: 2%">Now that we have seen what the model detects lets dive into how the neural network detects these
+                    objects. A convolutional neural network performs different mathematical operations repeatedly to
+                    learn information for an image. Two major operations performed are convolutions and applying an
+                    activation function. We discuss each of the operations before the user gets the opportunity to view
+                    how the output of each layer looks in the network.
+                </p>
+            </div>
+
             <div id="cnn-info-1" class="info-polaroid">
                 <div class="prediction-text bg-dark">
                     <h4>Convolution</h4>
                 </div>
-                <p>Convolutions are used to extract features from the image. We can see that the earlier layers try to
+                <p>Convolutions are used to extract features from the image. Generally, the earlier layers try to
                     capture the edges and backgrounds, the middle layers capture the prominent features and the deeper
-                    layers try to
-                    learn the overall structure in the image. This is the reason that the output of the deeper layers
-                    are not very coherent visually.
+                    layers try to learn the overall structure in the image. This is the reason that the output of the
+                    deeper layers are not very coherent visually. You'll learn more about this while seeing the ouput of
+                    multiple layers of the network.
                     <br /><br />
                     The image shown has size 5X5, which is convolved with a 3X3 Kernel to generate the feature maps. The
                     convolution operation is performed by sliding the kernel across the image. In the animation shown
@@ -194,23 +207,31 @@
                     every location, we perform element-wise matrix multiplication and rum the result to get the
                     corresponding value in the feature map.
                 </p>
-                <img src="assets/convolution.png" />
-                <img src="assets/ConvolutionGif.gif" />
+                <img src="assets/convolution.png" style="margin-left: 10%; margin-bottom: 0;" />
+
+                <p>The below image shows how the feature map is generated at each pixel using convolution.</p>
+                <img src="assets/ConvolutionGif.gif" style="margin-left: 10%; " />
             </div>
 
             <div id="cnn-info-2" class="info-polaroid">
                 <div class="prediction-text bg-dark">
                     <h4>Activation</h4>
                 </div>
-                <p>The data represented in the real world is mainly non-linear. Consider the graph given in figure --
-                    representing the blood pressures of individuals who smoke and the ones who don’t. A linear graph
+                <br />
+                <p>The data represented in the real world is mainly non-linear. Consider the graph given in the below
+                    figure representing the blood pressures of individuals who smoke and the ones who don’t.</p>
+
+                <img src="assets/activation_nonlinear.jpg" style="margin-left: 10%; margin-bottom: 0;" />
+
+                <p>A linear graph
                     will only be able to give a line 3D space but will not be able to learn the patter on what makes the
                     person a smoker or a non-smoker. This is because the pattern that defines this classification is
                     nonlinear. To learn on this data we need to induce non-linearity into the system. Since convolution
                     is a linear function, we need to pass the feature maps generated through a nonlinear function. These
-                    functions are called activation functions. </p>
+                    functions are called activation functions. In this project we are using a ReLU activation function
+                    and below is the description how ReLU works on an image.</p>
                 <img src="assets/activation.png" />
-                <img src="assets/activation_nonlinear.jpg" />
+                <!-- <br /> -->
             </div>
         </div>
 
