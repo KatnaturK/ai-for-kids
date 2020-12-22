@@ -1,29 +1,38 @@
-Start on your machine
+# Overview
 
-1. Download the code from github
-2. Run the index.html file on your browser (recommended browser - chrome)
-3. No need to add any additional libraries or packages.
-4. Start exploring!
+ Object detection is a sought-after field in computer vision with many applications. It is used from video surveillance, face detection to self-driving cars. We develop an application to interactively teach users how object detection is done using Convolutional neural networks. We have used a pre trained Coco ssd model for object detection, already available in tensoflow.js. Coco ssd uses mobilenet v2 architecture for feature extractions. Our application shows how these features are extracted to detect objects.
 
-Below are the steps on how to use the application :
+# Workflow
 
-1. The first page displayed gives the user an option to upload an image. After uploading the input image, click on _Predict Image_ button to see what objects the model detects. The user can also click on _model summary_ button to get additional details about the design of the network.
+ The web app allows a user to upload any image and detect objects in it. We give a brief explanation of Convolution, activation function performed by the CNN for feature extraction. We also provide some interesting details useful in understanding the flow of the neural network. After having the knowledge of each of the terms, the user then gets to visually see how the layers of a convolution network look like by clicking on “Convolutional Neural Network for uploaded image” button. The display shows image outputs of each neuron in multiple layers.
 
-![](RackMultipart20201222-4-23xvrj_html_c27292f179176ce6.png)
+----------
 
-1. After clicking the Predict Image button, a lot of information is displayed on the screen. Along with showing the output of the model, we give a brief overview about convolution, activation functions and other details to understand how the network predicts.
+# Running the AI-for-kids project
 
-![](RackMultipart20201222-4-23xvrj_html_b82676c72133a17.png)
+- Download the code from GitHub
+- Run the index.html file on your browser (recommended browser - chrome)
+- No need to add any additional libraries or packages
+- Start exploring!
 
-![](RackMultipart20201222-4-23xvrj_html_d0f8f87552744e1b.png)
+# Below are the steps on how to use the application
 
-1. After learning about how the network using mathematical operations to learn, we next give the user an option to learn more about each layer outputs in the neural network.
+1. The first page displayed gives the user an option to upload an image. After uploading the input image, click on Predict Image button to see what objects the model detects. The user can also click on model summary button to get additional details about the design of the network.
 
-![](RackMultipart20201222-4-23xvrj_html_7b640fc123ee77da.png)
+	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/starting_page.png)
 
-1. The multiple layer diagram shows the output of different convolution and activation layers. Click on any image in the layers to learn more about it.
+2. After clicking the Predict Image button, a lot of information is displayed on the screen. Along with showing the output of the model, we give a brief overview about convolution, activation functions and other details to understand how the network predicts.
 
-![](RackMultipart20201222-4-23xvrj_html_d89ec5fcd639b819.png)
+	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/prediction_panel.png)
 
-1. The pop up shows images from starting layer, middle layers and end layers to allow the user to compare how different features are learnt at different layers.
+3. After learning about how the network using mathematical operations to learn, we next give the user an option to learn more about each layer outputs in the neural network. 
 
+	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/cnn-info-panel.png)
+
+4. The multiple layer diagram shows the output of different convolution and activation layers. Click on any image in the layers to learn more about it.
+
+	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/cnn-flow-panel.png)
+
+5. The pop up shows images from starting layer, middle layers and end layers to allow the user to compare how different features are learnt at different layers. 
+
+	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/cnn-layers-panel.png)
