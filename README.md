@@ -24,15 +24,12 @@
 2. After clicking the Predict Image button, a lot of information is displayed on the screen. Along with showing the output of the model, we give a brief overview about convolution, activation functions and other details to understand how the network predicts.
 
 	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/prediction_panel.png)
+	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/cnn-info-panel.png)
 
 3. After learning about how the network using mathematical operations to learn, we next give the user an option to learn more about each layer outputs in the neural network. 
 
-	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/cnn-info-panel.png)
-
-4. The multiple layer diagram shows the output of different convolution and activation layers. Click on any image in the layers to learn more about it.
-
 	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/cnn-flow-panel.png)
 
-5. The pop up shows images from starting layer, middle layers and end layers to allow the user to compare how different features are learnt at different layers. 
+4. The multiple layer diagram shows the output of different convolution and activation layers. Click on any image in the layers to learn more about it.
 
 	![](https://raw.githubusercontent.com/KatnaturK/ai-for-kids/master/docs/cnn-layers-panel.png)
